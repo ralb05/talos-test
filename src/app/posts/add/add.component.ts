@@ -60,7 +60,7 @@ export class AddComponent implements OnInit {
     }
   }
 
-  onSelectAttatchment(event: Upload): void {
+  onSelectAttatchment(event: any): void {
     this.disabled = true;
     this.uploadFile = event.files[0];
   }

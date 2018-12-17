@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
   visible = true;
+  label = '';
   constructor(private router: Router) {
   }
 
