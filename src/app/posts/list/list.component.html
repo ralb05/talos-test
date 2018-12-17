@@ -1,0 +1,52 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>All posts</h1>
+      
+      <p-dataView [value]="list" layout="grid">
+        <p-header>
+          <p-button
+             (mouseover)="changeText(true)" (mouseout)="changeText(false)"
+             class="button-add" label="{{label}}" icon="pi pi-plus" (onClick)="add()"></p-button>
+        </p-header>
+        <ng-template let-data pTemplate="gridItem">
+          <div style="padding:.5em" class="ui-g-12 ui-md-3">
+            <p-panel [header]="data.title" [style]="{'text-align':'center'}">
+              <div *ngIf="data.photoUrl">
+                <img src="{{publicUrl}}{{data.photoUrl}}" width="60">
+              </div>
+              <div *ngIf="!data.photoUrl">
+                <img src="../../../assets/images/noavailable.jpeg" width="60">
+              </div>
+              <div class="car-detail">{{data.description}}</div>
+              <hr class="ui-widget-content" style="border-top:0">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon" *ngFor="let tag of data.tags">{{tag}}</span>
+                </div>
+              <hr class="ui-widget-content" style="border-top:0">
+              <button pButton label="view" type="button" icon="pi pi-eye" (click)="view(data.id)" style="margin-top:0"></button>
+              
+            </p-panel>
+          </div>
+        </ng-template>
+      </p-dataView>
+      
+      <!--<p-table  dataKey="label"
+                [value]="list" [paginator]="true" [rows]="10" [responsive]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="label">Title<p-sortIcon field="label"></p-sortIcon></th>
+            <th pSortableColumn="label">Description<p-sortIcon field="label"></p-sortIcon></th>
+            <th style="width: 120px;">Acción</th></tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+          <tr>
+            <td>{{ data.title }}</td>
+            <td>{{ data.description }}</td>
+            <td style="text-align:center"><button type="button" icon="pi pi-eye" (click)="view(data.id)" pButton></button></td>
+          </tr>
+        </ng-template>
+      </p-table>-->
+    </div>
+  </div>
+</div>

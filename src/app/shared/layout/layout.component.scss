@@ -1,0 +1,18 @@
+html, body {
+   height: 100%;
+   margin: 0;
+}
+.layout-wrapper {
+   min-height: 90%;
+}
+.footer {
+   padding: .5em; }
+.footer .footer-text-left {
+   float: left; }
+.footer .footer-text-right {
+   color: #757575;
+   float: right; }
+.footer .footer-text-right span {
+   vertical-align: middle;
+   display: inline-block;
+}

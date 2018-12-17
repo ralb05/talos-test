@@ -1,0 +1,60 @@
+<p-panel header="Create a new post">
+	<form (ngSubmit)="f.valid && onSubmit()" #f="ngForm" novalidate id="formulario" name="formulario" style="margin-bottom: 20px;">
+		<div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+			<div class="ui-g form-group">
+				<div class="ui-grid-col-6">
+					<label for="title">* Title:</label>
+					<input pInputText type="text" id="title" name="title" required size="100"
+					       [(ngModel)]="mainObj.title" #title="ngModel" minlength="2"/>
+					<div class="ui-message ui-messages-error ui-corner-all" *ngIf="f.submitted && !title.valid">
+						title is Required
+					</div>
+				</div>
+				<div class="ui-grid-col-6">
+					<!--<input type="file" id="file" name="file" [(ngModel)]="uploadFile"/>
+					{{uploadFile}}-->
+					<p-fileUpload name="fileNames[]" maxFileSize="1000000" accept="image/*" method="put" auto="true"
+					              chooseLabel="Select Image" [disabled]="disabled"
+					              (onSelect)="onSelectAttatchment($event)"
+					              customUpload="true" (uploadHandler)="onUploadAttatchment($event)"
+					              (onRemove)="removeFile()">
+					</p-fileUpload>
+				</div>
+			</div>
+			<div class="ui-g form-group">
+				<div class="ui-grid-col-12">
+					<label for="description">Description:</label>
+					<textarea [rows]="3" [cols]="30" pInputTextarea id="description" name="description"
+					          [(ngModel)]="mainObj.description"
+					          autoResize="autoResize" class="ui-inputtext"></textarea>
+				</div>
+			</div>
+			<div class="ui-g form-group">
+				<div class="ui-grid-col-12">
+					<label for="description">Press enter to add new tag:</label>
+					<p-chips [(ngModel)]="mainObj.tags"  id="tags" name="tags"></p-chips>
+				</div>
+			</div>
+			
+			<div class="ui-g form-group">
+				<div class="ui-grid-col-3"></div>
+				<div class="ui-grid-col-3">
+					<button pButton class="ui-button-danger" type="button" label="Cancel" icon="pi pi-times"
+					        (click)="onBack((f.dirty === true))"></button>
+				</div>
+				<div class="ui-grid-col-3">
+					<button pButton type="submit" label="Save"
+					        icon="pi pi-save"></button>
+				</div>
+				<div class="ui-grid-col-3"></div>
+			</div>
+		</div>
+	</form>
+</p-panel>
+<p-confirmDialog width="400" #cd>
+	<p-footer>
+		<button type="button" pButton icon="fa fa-close" label="No" (click)="cd.reject()"></button>
+		<button type="button" pButton icon="fa fa-check" label="Si" (click)="cd.accept()"></button>
+	</p-footer>
+</p-confirmDialog>
+<p-growl [value]="msgs" sticky="sticky"></p-growl>

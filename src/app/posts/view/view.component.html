@@ -1,0 +1,15 @@
+<p-panel [header]="data.title" [style]="{'text-align':'center'}">
+  <div *ngIf="data.photoUrl">
+    <img src="{{publicUrl}}{{data.photoUrl}}" >
+  </div>
+  <div *ngIf="!data.photoUrl">
+    <img src="../../../assets/images/noavailable.jpeg">
+  </div>
+  <div class="car-detail">{{data.description}}</div>
+  <hr class="ui-widget-content" style="border-top:0">
+  <div class="ui-inputgroup">
+    <span class="ui-inputgroup-addon" *ngFor="let tag of data.tags">{{tag}}</span>
+  </div>
+  <hr class="ui-widget-content" style="border-top:0">
+  <button pButton label="Back" type="button" icon="pi pi-list" (click)="back()" style="margin-top:0"></button>
+</p-panel>
